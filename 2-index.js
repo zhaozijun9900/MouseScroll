@@ -1,5 +1,6 @@
 //拖拽函数
 
+//获取元素
 var box = document.querySelector("div");
 
 box.addEventListener("mousedown", down);
