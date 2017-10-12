@@ -1,6 +1,7 @@
 //拖拽函数
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 var box = document.querySelector("div");
 =======
 box.addEventListener("mousedown", down);
@@ -21,3 +22,11 @@ function move(ev) {
 	box.style.top = y + "px";
 }
 >>>>>>> move
+=======
+document.addEventListener("mouseup",up);
+
+function up() {
+	document.addEventListener("mousemove",move);
+	document.addEventListener("mouseup",up);
+}
+>>>>>>> up
