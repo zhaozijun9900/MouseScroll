@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			.active {
+				background: yellow;
+			}
+			
+			#box1 div,
+			#box2 div {
+				width: 200px;
+				height: 200px;
+				border: 1px solid #000;
+				display: none;
+			}
+			
+			#box1 div.show,
+			#box2 div.show {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 选项卡一 -->
+		<div id="box1">
+			<button class="active btns">按钮一</button>
+			<button class="btns">按钮二</button>
+			<button class="btns">按钮三</button>
+			<div class="show">1111111</div>
+			<div>22222222222</div>
+			<div>3333333333333</div>
+		</div>
+		<!-- 选项卡二 -->
+		<div id="box2">
+			<button class="active btns">按钮一</button>
+			<button class="btns">按钮二</button>
+			<button class="btns">按钮三</button>
+			<div class="show">1111111</div>
+			<div>22222222222</div>
+			<div>3333333333333</div>
+		</div>
+		<!-- 点击它让第一个停 -->
+		<button class="Tbtns">需求1</button>
+		<!-- 点击它让第二个开 -->
+		<button class="Tbtns">需求2</button>
+		<!-- 点击它都关,再点一下都开 -->
+		<button class="Tbtns">需求3</button>
+		<!-- 点击它开的关，关的开 -->
+		<button class="Tbtns">需求4</button>
+		<!-- 倒着轮播-->
+		<button class="Tbtns">需求5</button>
+		<script>
+			function Tab(IdName) {
+				this.box = document.getElementById(IdName)
+				//this.属性名
+				this.btns = this.box.querySelectorAll(".btns"); //属性
+				this.contents = this.box.querySelectorAll("div") //属性 
+
+				this.timer = null;
+				this.num = 0;
+
+			}
+			//添加点击事件
+			Tab.prototype.click = function() {
+				var _this = this; // this---> Tab
+				for(var i = 0; i < _this.btns.length; i++) {
+					//自定义属性；
+					_this.btns[i].index = i
+					_this.btns[i].onclick = function() {
+						_this.tabs(this.index); //this---> btns
+					}
+				}
+			}
+			//添加切换事件
+			Tab.prototype.tabs = function(index) {
+				//大清除
+				for(var i = 0; i < this.btns.length; i++) {
+					this.btns[i].className = "";
+					this.contents[i].className = "";
+				}
+
+				this.btns[index].className = "active";
+				this.contents[index].className = "show";
+
+			}
+
+			//向前自动播放
+			Tab.prototype.autoPlay = function() {
+				var _this = this;
+				clearInterval(this.timer)
+				this.timer = setInterval(function() {
+					_this.num++; // 滚动的变化规律；		
+					_this.tabs(_this.num %= _this.btns.length);
+				}, 1000)
+
+			}
+			//向后自动播放	
+			Tab.prototype.autoBlckPlay = function() {
+				var _this = this;
+				clearInterval(this.timer)
+				this.timer = setInterval(function() {
+					_this.num--; // 滚动的变化规律；	
+					if(_this.num < 0) _this.num = _this.btns.length - 1
+					_this.tabs(_this.num);
+				}, 1000)
+
+			}
+			//停止
+			Tab.prototype.stop = function() {
+				clearInterval(this.timer)
+			}
+
+			//选项卡一：
+			var t1 = new Tab("box1");
+			t1.click();
+			t1.autoPlay();
+
+			//选项卡二：
+			var t2 = new Tab("box2");
+			t2.click();
+			t2.stop();
+
+			var onOff = true;
+			//功能需求按钮：
+			var btns = document.querySelectorAll(".Tbtns");
+
+			btns[0].onclick = function() {
+				t1.stop();
+			}
+			//点击它让第二个开
+			btns[1].onclick = function() {
+				t2.autoPlay();
+			}
+			//点击它都关,再点一下都开
+			btns[2].onclick = function() {
+				if(onOff) {
+					t1.stop();
+					t2.stop();
+				} else {
+					t1.autoPlay();
+					t2.autoPlay();
+				}
+				onOff = !onOff; // 改变状态	
+			}
+			//点击它开的关，关的开 
+			btns[3].onclick = function() {
+				//如果定时器存在话的是1; 否则是null;
+				//					定时器没开关一次数值都向上加, 可以作为判断条件;
+				t1.timer ? t1.stop() : t1.autoPlay();
+				t2.timer ? t2.stop() : t2.autoPlay();
+			}
+			//倒着轮播
+			btns[4].onclick = function() {
+				t1.autoBlckPlay();
+				t2.autoBlckPlay();
+			}
+		</script>
+	</body>
+
+</html>
