@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		div {
+			width: 150px;
+			height: 150px;
+			background: red;
+		}
+	</style>
+
+	<body>
+		<div></div>
+	</body>
+	<script>
+//		//addEventListener 只能解除绑定命名函数	
+//		var btn = document.querySelector("div");
+//		btn.addEventListener("click", isClick)
+//
+//		function isClick() {
+//			console.log("哈哈");
+//			//解除绑定
+//			btn.removeEventListener("click", isClick)
+//		}
+
+		//注意： 匿名函数不是同一个函数， 所以无法删除
+
+		document.addEventListener('click', function() {
+			console.log('我是document11111');
+		});
+
+		document.removeEventListener('click', function() {
+			console.log('我是document11111');
+
+		});
+	</script>
+
+</html>

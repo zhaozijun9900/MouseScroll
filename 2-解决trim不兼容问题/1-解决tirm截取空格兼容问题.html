@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			
+			
+			var str = "     你好，欢迎来到我的github;    "
+			
+			//console.log(str.trim())  不兼容
+			
+			var str = str.replace(/^\s+|\s+$/g,"");
+			
+			console.log(str)  //你好，欢迎来到我的github;
+			
+		</script>
+	</body>
+
+</html>

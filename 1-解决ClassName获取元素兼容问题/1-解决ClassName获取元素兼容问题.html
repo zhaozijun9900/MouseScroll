@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div class="li lis"></div>
+		<div id="box"></div>
+		<div class="li"></div>
+		<div></div>
+
+		<script>
+			getClassNameElement(".li");
+			//解决ClassName获取元素兼容性问题
+			function getClassNameElement(ArrName) {
+				//创建ClassName的数组
+				var arr = [];
+				//截取字符串的第0位置
+				tagName = ArrName.charAt(0);
+				//------------------------------------------------------//		
+				//				语法:srting.charAt()
+				//				作用:返回指定字符串某个位置的字符;
+				//				返回值:返回字符串
+				//				参数: 0 到 字符串length-1 的一个整数
+				//				注意:参数不写,默认为0 ;  如果参数<0或大于字符串的位置 返回空字符串
+				//------------------------------------------------------//		
+				if(tagName === "#") {
+					return document.getElementById(ArrName.substring(1))
+				} else if(tagName === ".") {
+					//获取所有元素
+					var aEle = document.getElementsByTagName("*");
+					var className = ArrName.substring(1);
+					for(var i = 0; i < aEle.length; i++) {
+						var aggClassName = aEle[i].className.split(" ");
+						for(var j = 0; j < aggClassName.length; j++) {
+							if(aggClassName[j] === className) {
+								arr.push(aEle[i])
+							}
+						}
+					}
+					return arr
+				} else {
+					return document.getElementsByTagName(ArrName)
+				}
+
+			}
+			console.log(getClassNameElement(".li"))
+		</script>
+	</body>
+
+</html>

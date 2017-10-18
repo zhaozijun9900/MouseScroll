@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+		<style>
+			#box{
+				/*padding: 10px;*/
+				width: 150px;
+				height: 150px;
+				/*border: 10px solid #000;*/  
+				/*overflow: scroll;*/
+				background: red;	
+				/*如果有边界包含边框 如果有滚动条包含滚动条*/
+				
+			}
+		</style>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script>
+		var box = document.getElementById("box");
+		console.log(box.getBoundingClientRect().top) // 获取元素上边框距离视窗的距离 8px
+		console.log(box.getBoundingClientRect().bottom)  // 获取元素下边框距离视窗的距离 158px;
+		console.log(box.getBoundingClientRect().right); // 获取元素右边框距离视窗的距离 158px;
+		console.log(box.getBoundingClientRect().left); // 获取元素左边框距离视窗的距离 158px;
+		
+		
+		
+		
+		
+		//obj.getClientRect
+		
+	</script>
+</html>
