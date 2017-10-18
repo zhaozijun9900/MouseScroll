@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			.active {
+				background: yellow;
+			}
+			
+			div {
+				width: 200px;
+				height: 200px;
+				border: 1px solid #000;
+				display: none;
+			}
+			
+			div.show {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button class="active">按钮一</button>
+		<button>按钮二</button>
+		<button>按钮三</button>
+		<div class="show">1111111</div>
+		<div>22222222222</div>
+		<div>3333333333333</div>
+		<script>
+			function Tab() {
+				//this.属性名
+				this.btns = document.getElementsByTagName("button"); //属性
+				this.contents = document.querySelectorAll("div") //属性 
+
+				this.timer = null;
+				this.num = 0;
+
+			}
+			//添加点击事件
+			Tab.prototype.click = function() {
+				var _this = this; // this---> Tab
+				for(var i = 0; i < _this.btns.length; i++) {
+					//自定义属性；
+					_this.btns[i].index = i
+					_this.btns[i].onclick = function() {
+						_this.tabs(this); //this---> btns
+					}
+				}
+			}
+			//添加切换事件
+			Tab.prototype.tabs = function(Bthis) {
+				//大清除
+				for(var i = 0; i < this.btns.length; i++) {
+					this.btns[i].className = "";
+					this.contents[i].className = "";
+				}
+
+				Bthis.className = "active";
+				this.contents[Bthis.index].className = "show";
+
+			}
+
+			//自定播放
+			Tab.prototype.autoPlay = function() {
+				var _this = this;
+				this.timer = setInterval(function() {
+					//console.log(this)  ---> window
+					_this.btns[_this.num].className = "";
+					_this.contents[_this.num].className = "";
+
+					_this.num++;
+					if(_this.num >_this.btns.length-1){	
+						_this.num = 0;
+					} 
+					_this.btns[_this.num].className = "active";
+					_this.contents[_this.num].className = "show";
+
+				}, 1000)
+
+			}
+
+			var t = new Tab;
+			t.click();
+			t.autoPlay();
+		</script>
+	</body>
+
+</html>
