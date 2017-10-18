@@ -18,10 +18,22 @@ window.onload = function() {
 		this.disX = ev.clientX - this.box.offsetLeft;
 		this.disY = ev.clientY - this.box.offsetTop;
 
-		var move = function(ev) {
+//------------------方式1-----------------------//
+//		var move = function(ev) {
+//			_this.move(ev);
+//		}
+//		var up = function() {
+//			_this.up(move, up);
+//		}
+//------------------方式1-----------------------//
+
+
+
+		function move(ev) {
 			_this.move(ev);
 		}
-		var up = function() {
+
+		function up() {
 			_this.up(move, up);
 		}
 

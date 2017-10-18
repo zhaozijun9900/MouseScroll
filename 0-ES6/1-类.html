@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		//类：
+			function person(){}
+		
+		
+		//ES6:
+		class person {
+			//constructor 传递参数时，需要写！！！！！！
+			constructor(name, age) {
+				this.name = name;
+				this.age = age
+				//一般初始化的时都在这里面
+			}
+			//方法：
+			say() {
+				alert(this.name)
+			}
+		}
+		var p = new person("赵子钧", 18)
+		p.say();
+	</script>
+
+</html>
