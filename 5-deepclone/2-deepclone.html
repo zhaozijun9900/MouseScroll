@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		//		deepClone:
+		//			在一次遍历中:
+		//				如果是基础数据类型,那么直接赋值即可 ---> 基础数据类型:传值;
+		//			但是如果对象中,仍然存在对象,那么在这个时候赋值及传址;那么需要再次调用该方法. 遍历到全是基础数据类型为止
+
+		//[object Object]  	  
+
+
+
+
+		function deepClone(obj) {		
+			var o = Object.prototype.toString.apply(obj) === "[object Object]" ? {} : [];	
+			for(var key in obj ) {
+				o[key] = typeof obj[key] == "object" ? deepClone(obj[key]) : o[key]=obj[key];
+			}
+			return o;
+		}
+		var array = deepClone();
+	
+	
+	
+	</script>
+
+</html>
