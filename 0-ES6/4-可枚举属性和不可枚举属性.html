@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>	
+			//可枚举属性和不可枚举属性;
+				//不能被for in遍历到的属性就是不可枚举属性;(内置的属性)
+		//在ES5中:
+		var num = new Number();
+		for(var key in num) {
+			console.log(key); // 输出结果为空，因为	Number中内置的属性是不可枚举
+		}
+		console.log(Object.keys(num)) //[]
+
+//		（ 1） 在js中， 对象的属性分为可枚举和不可枚举， 它们是由属性的enumerable值决定的， 
+				//不可枚举属性， 用for...in是遍历不到的， js中内置属性是遍历不到的。
+//		举个例子：
+		function P() {
+			this.a = 'nihao';
+		}
+		P.prototype.look = function() {
+			console.log('2');
+		}
+		var b = new P();
+		for(var i in b) {
+			console.log(i);  // a look    
+		}
+//		这时候， 我们可以遍历到对象b的所有可枚举属性， 其中包括从原型继承来的。  如果过滤的话采用hasOwnproperty;
+		//but...
+		console.log(Object.keys(b)) //得到的结果却只是自身属性 不包括从原型继承来的属性
+
+		//ES6:
+		class person{
+			constructor(){
+				this.a = 'nihao';
+			}
+			look(){
+				console.log('2');
+			}
+		}
+		
+		var p = new person;
+		for(var i in p) {
+			console.log(i);  // a  
+		}
+		console.log(Object.keys(p))
+		
+		console.log(person.prototype.hasOwnProperty("look"))
+			
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+
+</html>

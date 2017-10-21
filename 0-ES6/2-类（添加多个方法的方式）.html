@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+				
+	//ES6	
+	
+	//关键字:class  //定义类
+		
+	class person {
+//		constructor -->构造方法 
+//		也就是说ES6的构造方法对应在ES5的构造函数原型上挂了一个方法；
+		constructor(){
+			//一般初始化属性写在这里；
+				//为什么????????????
+				console.log(person.prototype.toString == person) //true
+			//console.log(this)// this-->实例化对象
+			this.name = "猪"	
+		}
+		
+	}
+	
+	console.log(typeof person) //function
+	
+	//Object.assign方法可以很方便地一次向类添加多个方法。
+	Object.assign(person.prototype, {
+	  toString(){
+	  	console.log("哈哈哈哈  你是猪")
+	  },
+	  toValue(){
+	  	console.log("哈哈哈哈  我也是猪")
+	  }
+	
+	});
+	
+	
+	
+	
+		
+	var p = new person;
+	p.toString();
+	p.toValue();
+	
+	//console.log(p.toString === person.prototype.toString) //true
+
+		
+		
+		
+		
+;
+	</script>
+
+</html>
