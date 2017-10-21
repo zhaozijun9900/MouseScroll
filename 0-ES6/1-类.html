@@ -9,25 +9,32 @@
 	<body>
 	</body>
 	<script>
-		//类：
-			function person(){}
+	
+	//关键字:class  //定义类
 		
+	class person {
+//		constructor -->构造方法 
+//		也就是说ES6的构造方法对应ES5的构造函数
+		constructor(){
+			//一般初始化属性写在这里；
+			//console.log(this)// this-->实例化对象
+			this.name = "猪"
 		
-		//ES6:
-		class person {
-			//constructor 传递参数时，需要写！！！！！！
-			constructor(name, age) {
-				this.name = name;
-				this.age = age
-				//一般初始化的时都在这里面
-			}
-			//方法：
-			say() {
-				alert(this.name)
-			}
 		}
-		var p = new person("赵子钧", 18)
-		p.say();
+//	构造函数的prototype属性，在 ES6 的“类”上面继续存在。
+//	事实上，类的所有方法都定义在类的prototype属性上面。
+		say(){
+			console.log("哈哈哈你是^(*￣(oo)￣)^");
+		}
+		
+	}
+	//类内部定义的方法，它是不可枚举的
+	
+	//person(); 必须new用  否则报错；
+		
+		
+		
+
 	</script>
 
 </html>
