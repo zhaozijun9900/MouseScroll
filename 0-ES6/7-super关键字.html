@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+//		继承 extends
+		class person{
+			constructor(){
+				this.name = "你好";
+			}
+			say(){
+				console.log("哈哈。你是猪吗？？")
+			}
+		}
+		var p = new person;
+		p.say();
+		
+		
+		
+		class Darg extends person{
+			constructor(){
+				 //console.log(this)不调用super方法，子类就得不到this对象--报错！
+				 super();// 调用父类的constructor(x, y);必须写;
+//				 super虽然代表了父类A的构造函数，但是返回的是子类B的实例;
+//				  即super内部的this指的是B，
+//	       		  因此super()在这里相当于A.prototype.constructor.call(this)。
+		
+			}
+		}
+		var p1 = new Darg();
+	</script>
+
+</html>

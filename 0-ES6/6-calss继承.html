@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+//		继承 extends
+		class A{
+			constructor(){
+				this.name = "你好";
+			}
+			say(){
+				console.log("哈哈。你是猪吗？？")
+			}
+		}
+		var p = new A;
+		p.say();
+		
+		
+		
+		class B extends A{
+			constructor(){			 
+//				 super();// 调用父类的构造函数		  	
+				 console.log(super()) //返回的是B实例化对象
+				 //是因为相当于A.portotype.constructor.call(this)
+			}
+		}
+		var p1 = new B();
+		//super虽然代表了父类A的构造函数，但是返回的是子类B的实例
+	</script>
+
+</html>

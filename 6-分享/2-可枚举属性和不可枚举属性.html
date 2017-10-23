@@ -57,18 +57,15 @@
 			console.log(key)   // auto  遍历不到类原型身上的自定义属性   ；
 		}
 		
-		console.log(person1.prototype.hasOwnProperty("toString"))
-		
-		
 		//如果想拿到人为设置在类原型身上的属性的话:
 		var arr = Object.getOwnPropertyNames(person1.prototype)
-		console.log(arr)
+		console.log(arr)// ["constructor", "modol"]
 		//参数:对象
 		//返回值：其(自身)的可枚举和不可枚举属性的名称的数组;
 		
 //		Object.keys()
 //		返回一个给的对象自身可枚举的属性名称组成的集合
-		var arr1 = Object.keys(person1.prototype)// ["constructor", "modol"]
+		var arr1 = Object.keys(person1.prototype)
 		console.log(arr1) //[]
 		
 
