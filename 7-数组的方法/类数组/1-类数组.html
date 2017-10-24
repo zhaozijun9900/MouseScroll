@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    // 类数组：
+    //     具有length属性；
+    //     不具有array的属性和方法；
+
+    // javascript中常见的类数组:
+    //      document.getElementsByTagName()
+
+
+    //将类数组转换成数组；
+    var a = {'0':1,'1':2,'2':3,length:3};
+   // console.log(Array.prototype.slice.call(a) // 将类数组转化成数组的方式；
+    
+   
+   //ES6类数组转化成数组的方式：
+        //是有要求的必须是具有length属性的； 否则为空数组
+        console.log(Array.from(a))
+
+    var str = "我爱奥迪"
+    console.log(Array.from(str))  // ["我", "爱", "奥", "迪"]
+
+
+
+</script>
+</body>
+</html>
