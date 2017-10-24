@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    
+    var arr = [1,2,3,4,10,100,1]
+    
+    arr.filter((e,i,w)=>{
+    	if(e>10) alert(e)
+    })
+
+    //找到该数组中大于10的数字；
+    var filtered = [12, 5, 8, 130, 44].filter(function(e){
+        //每过滤一次数组内容都要调用一次callback;
+        return e >= 10;  //必须要retrun 否则为空
+    });
+    // filtered is [12, 130, 44]
+
+
+
+
+
+    /*
+        参数:  回调函数；callback;
+        回调函数有三个参数：
+            参数1：数组内容；
+            参数2：数组的索引；
+            参数3：数组本身；
+        返回值： 新的Array
+    */
+
+</script>
+</body>
+</html>

@@ -20,8 +20,11 @@
 		var obj = new Object();
 		obj.abc = "哈哈，你是猪";  //自定属性；
 		for(var key in obj) {
-//			console.log(key	); // 输出结果为abc，
+			//console.log(key	); // 输出结果为abc，
 		}	
+		
+		
+		
 //        用for in 去遍历实例化对象  包含继承于原型链上的属性
 //		但是比方说:
 //			任何对象都包含toString(); 此时就遍历不到。        为什么？？？？   这就是我想分享可枚举属性和不可枚举原因了  ——————> 话题2
@@ -29,18 +32,18 @@
 	//二 枚举属性的作用：
 		//影响for in 的循环结果:
 		
-		//在ES5中：挂在构造函数原型上的属性是可枚举属性；
+//		//在ES5中：挂在构造函数原型上的属性是可枚举属性；
 		function person(){
 			this.auto ="Aodi";
 		}
 		//可枚举属性
-		person.prototype.modol = function(){
-			console.log("A6L");
-		}
-		var p = new person;
-		for(var key in p){
-		 //console.log(key); //auto modol
-		}
+//		person.prototype.modol = function(){
+//			console.log("A6L");
+//		}
+//		var p = new person;
+//		for(var key in p){
+//		 console.log(key); //auto modol
+//		}
 		//通过for in是可以遍历到实例化对象，和构造函数身上人为设置的方法的；
 		
 		//但是,在ES6中;挂在类原型上的属性是不可枚举属性；
@@ -54,13 +57,13 @@
 		}
 		var p1 = new person1;		
 		for(var key in p1){
-			console.log(key)   // auto  遍历不到类原型身上的自定义属性   ；
+			//console.log(key)    // auto  遍历不到类原型身上的自定义属性   ；
 		}
 		
 		//如果想拿到人为设置在类原型身上的属性的话:
-		var arr = Object.getOwnPropertyNames(person1.prototype)
-		console.log(arr)// ["constructor", "modol"]
-		//参数:对象
+//		var arr = Object.getOwnPropertyNames(person1.prototype)
+//		console.log(arr)// ["constructor", "modol"]
+//		//参数:对象
 		//返回值：其(自身)的可枚举和不可枚举属性的名称的数组;
 		
 //		Object.keys()

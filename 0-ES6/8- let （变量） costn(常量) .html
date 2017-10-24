@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		let aa = "heihei"
+		
+		{
+			let a  = "哈哈"; // let声明的变量 只在它所在的代码块起作用；  ；
+			var b = "嘿嘿";
+			{
+				console.log(a); //子代码块可以访问父代码块
+				console.log(b);
+			}
+		}
+//		console.log(a)
+//		代码块之外调用这两个变量，
+//		结果let声明的变量报错
+//		var声明的变量返回了正确的值。 不存在块的概念；
+//		这表明，只在它所在的代码块有效。
+	</script>
+
+</html>
