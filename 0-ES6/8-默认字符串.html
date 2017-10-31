@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		let str = "跟你他妈没关系！！！！！！！！！！！"
+		
+
+		// 模板字符串：
+		// 	用反引号（`）标识
+		str = `你说：${str}`;
+	
+		// 括号内部可以放入
+		// 任意的JavaScript表达式，可以进行运算，以及引用对象属性。
+		str = `字符串的长度${str.length}`;
+		console.log(str)
+		
+		//括号内部可以调用函数
+		function fn() {
+ 		 return "Hello World";
+		}
+
+		str = `foo ${fn()} bar`
+		console.log(str)
+		
+
+	</script>
+
+</html>

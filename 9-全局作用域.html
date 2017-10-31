@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+		<style>
+			#box{
+				/* width: 50px;
+				height: 50px;
+				background-color: red; */
+			}
+		</style>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script>
+
+		function fn(){
+			console.log("在全局定义一个函数，相当于在window下面挂了一个属性")
+		}
+		console.dir(window)
+		fn();  // 可以省略Window不写；；；；
+
+	</script>	
+</html>

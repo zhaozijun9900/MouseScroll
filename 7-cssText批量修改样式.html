@@ -5,30 +5,28 @@
 		<title></title>
 	</head>
 		<style>
-	
+			#box{
+				/* width: 50px;
+				height: 50px;
+				background-color: red; */
+			}
 		</style>
 	<body>
+		<div id="box"></div>
 	</body>
 	<script>
-		var data = 1;
-		document.onclick = function(){
-			data++;
-			console.log(data)
-			switch(data){
-				case "1" : 
-				alert("你");
-				break;  //break 来阻止代码自动地向下一个 case
-				
-				case "2" :
-				alert("好");
-				break;
-				
-				default:
-	 			 alert("笨");
-			}
-		}
-		//判断条件和判断的值  一一对应
-		//判断条件和判断的值  必须是同样的数据类型
-		
+		//批量修改样式
+		var div = document.getElementById("box");
+		div.style.cssText = ";height:50px;width:50px;background-color:red;"
+		//如果在行间样式中存在样式的话：会把原有的cssText清掉；
+		//div.style.cssText = ";height:150px;background-color:yellow;"
+
+		//解决方法：
+			//可以采用cssText累加的方法
+		div.style.cssText += "border:1px solid #000;"
+
+		//优势：
+			//	减少浏览器的开销
+
 	</script>
 </html>

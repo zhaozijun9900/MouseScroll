@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+		<style>
+			#box{
+				/* width: 50px;
+				height: 50px;
+				background-color: red; */
+			}
+		</style>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script>
+		//解决方案：
+			//添加window.onload ---> 等页面全部加载完成后才执行里面的代码；
+		window.onload = function(){
+			console.log(a)
+		}
+		
+	</script>
+	<script>
+		var a = 10;
+	</script>
+
+	<!-- 多个script标签的作用域:
+	
+		在编译器编译的时候是从上而下编辑的， 在遇到第一个script时，会优先解析；
+		在第一个script解析时，直接执行了 console.log(a)；
+		 但是此时还有解析到第二个script标签的内容；
+		所有报错；
+
+		在同一个HTMl页面中作用域是相同的；
+	
+	-->
+
+
+
+
+</html>

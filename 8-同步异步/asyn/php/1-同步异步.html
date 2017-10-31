@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="user" id="txt">
+		<button id="btn">按钮</button>
+	</body>
+	<script src="ajax.js"></script>
+	<script>
+		//JavaScript最基础的异步函数是setTimeout和setInterval
+		// 一般来说：可以改变程序正常执行顺序的操作就可以看成是异步操作
+		// console.log( "a" );   // 1 -->a
+		// setTimeout(function() {
+		// 	console.log( "c" )
+		// }, 500 );
+		// setTimeout(function() {
+		// 	console.log( "d" )
+		// }, 500 );
+		// setTimeout(function() {
+		// 	console.log( "e" )
+		// }, 500 );
+		// console.log( "b" );   // 2 -->b
+
+		// //执行顺序： a b  c d e
+
+	
+		
+		
+		var index=0;
+	
+		document.getElementById("btn").addEventListener("click",()=>{	
+			var flag=true;
+			ajax({
+				url:"ajax.php",
+				data:{
+					user:document.getElementById("txt").value
+				},
+				async:false,   //  --------->同步请求
+				success:function(data){
+					flag = false;						
+				},	
+			})		
+			if(flag) index++;   
+			alert(index);  	// --> 0
+		})		
+		// Ajax默认是异步请求的，所以就出现了上面我们看到的结果。
+		// 也就是ajax里面的代码还没有执行完，先执行了下面的代码。
+
+
+
+
+
+
+
+
+
+	</script>
+</html>

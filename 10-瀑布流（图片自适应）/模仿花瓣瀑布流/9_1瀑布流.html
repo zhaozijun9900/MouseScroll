@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    body {
+      background: skyblue;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .pic {
+      width: 236px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    img {
+      width: 236px;
+      border: none;
+      display: block;
+    }
+
+    ul {
+      position: relative;
+      list-style: none;
+      margin: 0 auto;
+    }
+
+    li {
+      position: absolute;
+      width: 236px;
+      transition:.5s;
+    }
+
+    #loading {
+      height: 65px;
+      width: 100%;
+      text-align: center;
+      background: #fff;
+      position: fixed;
+      bottom: 0;
+      display: none;
+    }
+
+    #loading img {
+      display: inline-block;
+      height: 65px;
+      width: 65px;
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="ul">
+
+  </ul>
+  <!-- <div id="loading">
+      <img src="1.gif">
+    </div> -->
+  <script src="josn1.0.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+
+    class falls {
+
+      constructor() {
+        this.dw = document.documentElement.clientWidth;
+        this.lw = 236;
+        this.int = 10;
+        this.let = Math.floor(this.dw / (this.int + this.lw))  //一页可以显示多少个li
+        // console.log(this.let)
+        this.arrT = [];
+        this.arrL = [];
+        this.ul = document.getElementById("ul");
+        this.ul.style.width = ((this.lw + this.int) * this.let - this.int) + "px";
+        for (var i = 0; i < this.let; i++) {
+          this.arrT.push(0);
+          this.arrL.push(i * (this.lw + this.int));
+        }
+        //设置开关；
+        this.num = 0;
+
+      }
+      //获取数据；
+      data() {
+        this.onOff = false;  //加载数据时，关闭！
+        let _this = this;
+        josnp({
+          url: "http://www.wookmark.com/api/json/popular",
+          data: {
+            page: _this.num,
+          },
+          success: function (data) {
+            _this.suc(data);
+            _this.view();
+          }
+        })
+      }
+      //找到最小高度；
+      minH() {
+        let m = Math.min.apply("", this.arrT);
+        let index = this.arrT.findIndex(e => e == m)
+        return index
+      }
+      //数据加载成功后执行；
+      suc(data) {
+        let _this = this;
+        if (data.length == 0) {
+          alert(`数据加载完了`)
+        } else {
+          data.forEach(function (e) {
+            let li = document.createElement("li");
+            let img = new Image();
+            img.src = e.preview;
+            let eh = e.height * (_this.lw / e.width); //元素的高度；      
+            img.onload = () => {
+              img.style.height = eh + "px"
+              let min = _this.minH();
+              li.append(img);
+              _this.ul.append(li);
+              li.style.cssText = `top:${_this.arrT[min]}px;left:${_this.arrL[min]}px;`
+              _this.arrT[min] += eh + _this.int;
+            }
+          });
+
+        }
+        this.onOff = true; //加载数据完成时，关闭！
+        this.setPage();
+      }
+      //切换数据
+      setPage() {
+        let _this = this;
+        document.onscroll = () => {
+          let min = _this.minH();
+          let sh = window.innerHeight + document.documentElement.scrollTop;  // 页面实际高度； 适窗高度+滚动高度
+          if (_this.arrT[min] <= sh && _this.onOff) {
+            _this.num++;
+            _this.data();
+          }
+        }
+      }
+      view(){
+        let _this  = this
+        window.onresize = ()=>{
+          _this.dw = document.documentElement.clientWidth;
+          _this.let = Math.floor(_this.dw / (_this.int + _this.lw))
+          _this.arrT.length = _this.arrL.length = 0;
+          _this.ul.style.width = ((_this.lw + _this.int) * _this.let - _this.int) + "px";
+          for (var i = 0; i < _this.let; i++) {
+            _this.arrT.push(0);
+            _this.arrL.push(i * (_this.lw + _this.int));
+          }
+
+          //给页面上li重新排序
+          let lis = Array.from(document.getElementsByTagName("li"));
+          lis.forEach((e)=>{
+            let min = _this.minH();
+            e.style.cssText = `top:${_this.arrT[min]}px;left:${_this.arrL[min]}px;`
+            _this.arrT[min] += e.scrollHeight + _this.int;
+          })
+        }
+      }
+
+    }
+    var fs = new falls;
+    fs.data();
+ 
+
+    /*
+
+
+
+    初始化设置:
+      查看一排可以显示多少个li; 设置一个初始化的值； top 和 left;
+      设置一个盒子的总宽度，超出部门自动下跳至下一行；
+      获取数据完成后，处理数据； 每加载成功一个图片时；改变一次数组中的TOP值；第二次执行时，遍历一下数据，找到最小的top值；添加图片；改变top值；
+
+
+
+
+
+    */
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
